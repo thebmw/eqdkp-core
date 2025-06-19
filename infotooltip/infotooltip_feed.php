@@ -64,7 +64,7 @@ try {
 		$direct				= ($in->exists('direct')) ? $in->get('direct', 0) : substr($in->get('data'), 0, 1);
 	}elseif($in->exists('data')) {
 		$direct				= ($in->exists('direct')) ? $in->get('direct', 0) : substr($in->get('data'), 0, 1);
-		$data				= unserialize_noclasses(base64_decode(substr($in->get('data'), 1)));
+		$data				= unserialize(base64_decode(substr($in->get('data'), 1)), array('allowed_classes' => false));
 	} else {
 		$direct				= $in->get('direct', 0);
 		$data['lang']		= substr($in->get('lang'),0,2);
@@ -105,9 +105,9 @@ try {
 		if(isset($item['icon']) && !$data['noicon']) {
 			$strDefaultIcon = $itt->buildlink().'/images/global/default-item.png';
 			if($data['onlyicon'] > 0) {
-				$visible = '<img src="'.((stripos($item['icon'], 'http') === 0) ? $item['icon'] : $iconpath.$item['icon'].$iconext).'" width="'.$data['onlyicon'].'" height="'.$data['onlyicon'].'" style="margin-top: 1px;" alt="icon" class="itt-icon" onerror="this.onerror=null;this.src=\''.$strDefaultIcon.'\';"/>';
+				$visible = '<img src="'.((stripos($item['icon'], 'http') === 0) ? $item['icon'] : $iconpath.$item['icon'].$iconext).'" width="'.$data['onlyicon'].'" height="'.$data['onlyicon'].'" style="margin-top: 1px;" alt="icon" class="itt-icon" onerror="this.onerror=null;this.src=\''.$strDefaultIcon.'\';" loading="lazy"/>';
 			} else {
-				$visible = '<img src="'.((stripos($item['icon'], 'http') === 0) ? $item['icon'] : $iconpath.$item['icon'].$iconext).'" width="16" height="16" style="margin-top: 1px;" alt="icon" class="itt-icon" onerror="this.onerror=null;this.src=\''.$strDefaultIcon.'\';"/> '.$display_name;
+				$visible = '<img src="'.((stripos($item['icon'], 'http') === 0) ? $item['icon'] : $iconpath.$item['icon'].$iconext).'" width="16" height="16" style="margin-top: 1px;" alt="icon" class="itt-icon" onerror="this.onerror=null;this.src=\''.$strDefaultIcon.'\';" loading="lazy"/> '.$display_name;
 			}
 		} else {
 			$visible = $display_name;

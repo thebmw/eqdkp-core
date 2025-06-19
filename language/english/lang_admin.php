@@ -621,6 +621,8 @@ $lang = array(
 	"requirements_modulename" => "Module name",
 	"requirements_required" => "Required Version",
 	"requirements_available" => "Available Version",
+	"requirements_external_connection" => "External connections",
+	"requirements_check_connection" => "Test external connections",
 	"adminc_system" => 'System',
 	"adminc_support" => 'Support',
 	"adminc_php_info" => 'Detailed PHP Information',
@@ -1066,7 +1068,7 @@ $lang = array(
 	"core_sett_fs_importer" => 'Importer settings',
 	"core_sett_f_settings_apikeys" => 'API credentials',
 	"core_sett_f_settings_apikey" => 'API-Key (read and write)',
-	"core_sett_f_settings_apikey_ro" => 'API-KEy (read-only)',
+	"core_sett_f_settings_apikey_ro" => 'API-Key (read-only)',
 	"core_sett_f_help_settings_apikey" => 'The external Data import/update requires API credentials.',
 	"core_sett_f_game_language" => 'Language of the game',
 	"core_sett_f_default_game" => 'Game',
@@ -1164,7 +1166,7 @@ $lang = array(
 	"core_sett_f_help_login_twitch_appid" => "Insert here the ID of your App created at <a href=\"https://dev.twitch.tv/dashboard\" target=\"_blank\">https://dev.twitch.tv/dashboard</a>.<br/>As Redirect-URI use ".register('env')->buildLink().'index.php/auth-endpoint/?lmethod=twitch',
 	"core_sett_f_login_twitch_appsecret" => "Twitch Client Secret",
 	"core_sett_f_login_discord_appid" => "Discord Client-ID",
-	"core_sett_f_help_login_discord_appid" => "Insert here the Client-ID of your App created at <a href=\"https://discordapp.com/developers/applications/me\" target=\"_blank\">https://discordapp.com/developers/applications/me</a>.<br/>As Redirect-URI use ".register('env')->buildLink().'index.php/auth-endpoint/?lmethod=discord',
+	"core_sett_f_help_login_discord_appid" => "Insert here the Client-ID of your App created at <a href=\"https://discord.com/developers/applications/me\" target=\"_blank\">https://discord.com/developers/applications/me</a>.<br/>As Redirect-URI use ".register('env')->buildLink().'index.php/auth-endpoint/?lmethod=discord',
 	"core_sett_f_login_discord_appsecret" => "Discord Client Secret",
 	"core_sett_f_enable_embedly" => 'Automatic conversion of links to embedded videos/pictures',
 	"core_sett_f_help_enable_embedly" => 'Links to video/pictures (e.g. youtube) will be converted automatically to embedded objects',
@@ -1943,5 +1945,5 @@ $lang = array(
 		"mems_raidgroup_change" => "The following characters have been added to the selected raidgroup: ",
 		"mass_usergroup_change"	=> "Add to Usergroup",
 		"bulk_user_usergroupsadded_success" => "The selected users have been added to the selected usergroup.",
-		
+        "event_pool_connection_missing" => "The event of the selected raid is not connected to a Point account.",
 );

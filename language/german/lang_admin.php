@@ -620,6 +620,8 @@ $lang = array(
 "requirements_modulename" => "Modulname",
 "requirements_required" => "Benötigte Version",
 "requirements_available" => "Verfügbare Version",
+"requirements_external_connection" => "Externe Verbindungen",
+"requirements_check_connection" => "Externe Verbindungen testen",
 "adminc_support" => "Support",
 "adminc_phpvalue" => "Wert",
 "adminc_phpname" => "Name der PHP	Einstellung",
@@ -1169,7 +1171,7 @@ $lang = array(
 "core_sett_f_help_login_twitch_appid" => "Trage hier den Key deiner App bei <a href=\"https://dev.twitch.tv/dashboard\" target=\"_blank\">https://dev.twitch.tv/dashboard</a> ein.<br>Als Redirect-URI verwende ".register('env')->buildLink().'index.php/auth-endpoint/?lmethod=twitch',
 "core_sett_f_login_twitch_appsecret" => "Twitch Client Secret",
 "core_sett_f_login_discord_appid" => "Discord Client-ID",
-"core_sett_f_help_login_discord_appid" => "Trage hier die Client-ID deiner App bei <a href=\"https://discordapp.com/developers/applications/me\" target=\"_blank\">https://discordapp.com/developers/applications/me</a> ein.<br>Als Redirect-URI verwende ".register('env')->buildLink().'index.php/auth-endpoint/?lmethod=discord',
+"core_sett_f_help_login_discord_appid" => "Trage hier die Client-ID deiner App bei <a href=\"https://discord.com/developers/applications/me\" target=\"_blank\">https://discord.com/developers/applications/me</a> ein.<br>Als Redirect-URI verwende ".register('env')->buildLink().'index.php/auth-endpoint/?lmethod=discord',
 "core_sett_f_login_discord_appsecret" => "Discord Client-Secret",
 "core_sett_f_enable_embedly" => "Automatisches Umwandeln von Links zu Videos/Bildern aktivieren",
 "core_sett_f_help_enable_embedly" => "Links zu Videos/Bildern, z.B. YouTube, werden automatisch zu den entsprechenden Videos/Bildern umgewandelt",
@@ -1949,4 +1951,5 @@ $lang = array(
 		"mems_raidgroup_change" => "Der folgenden Charaktere wurden zur ausgewählten Raidgruppe hinzugefügt: ",
 		"mass_usergroup_change"	=> "Zu Benutzergruppe hinzufügen",
 		"bulk_user_usergroupsadded_success" => "Die ausgewählten Benutzer wurden zur ausgewählten Gruppe hinzugefügt.",
+        "event_pool_connection_missing" => "Das Event des ausgewählten Raids ist keinem Punktekonto zugeordnet.",
 );

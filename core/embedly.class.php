@@ -207,7 +207,7 @@ class embedly extends gen_class {
 						$image = $objEmbedly->url;
 					}
 
-					$out .= '<img src="'.$image.'" alt="'.$title.'" />';
+					$out .= '<img src="'.$image.'" alt="'.$title.'" loading="lazy"/>';
 
 					$out .= '</div></div>';
 					break;
@@ -425,7 +425,7 @@ class embedly extends gen_class {
 		
 		if (!empty($src)) {
 			$parent = parse_url($this->env->buildlink());
-			$iframe = '<iframe src="' . $src . '&parent=' . $parent['host'] . '&autoplay=false" height="500" width="850" allowfullscreen></iframe>';	
+			$iframe = '<iframe src="' . $src . '&parent=' . $parent['host'] . '&autoplay=false" height="500" width="850" allowfullscreen loading="lazy"></iframe>';	
 			
 			return (object)array('html' => $iframe, 'width'=> 850, 'height'=> 500, 'type'=>'video', 'provider_url' => 'https://twitch.tv', 'provider_name' => 'Twitch');			
 		}

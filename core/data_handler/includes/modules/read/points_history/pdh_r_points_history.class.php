@@ -179,6 +179,7 @@ if ( !class_exists( "pdh_r_points_history" ) ) {
 
 			if(is_array($arrPoints['adjustment'])){
 				foreach($arrPoints['adjustment'] as $event_id => $adjustment){
+				    if(!isset($arrPoints['adjustment'][0])) $arrPoints['adjustment'][0] = 0;
 					$arrPoints['adjustment'][0] += $adjustment;
 				}
 			}
@@ -194,7 +195,7 @@ if ( !class_exists( "pdh_r_points_history" ) ) {
 	public function calculate_multi_points($memberid, $multidkpid = 1, $from=0, $to=PHP_INT_MAX){
 			$strCacheKey = md5('multi_'.$memberid.'.'.$multidkpid.'.'.$from.'.'.$to);
 			//already cached?
-			if(isset($this->arrLocalPointsCache[$strCacheKey])) return true;
+			if(isset($this->arrLocalPointsCache[$strCacheKey])) return $this->arrLocalPointsCache[$strCacheKey];
 
 			$arrPoints = array();
 

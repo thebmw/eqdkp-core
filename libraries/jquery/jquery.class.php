@@ -67,9 +67,9 @@ if (!class_exists("jquery")) {
 			$this->tpl->add_js("var mmocms_sid = '".$this->SID."';", 'head_top');
 			$this->tpl->add_js("var mmocms_userid = ".$this->user->id.";", 'head_top');
 			$this->tpl->add_js("var mmocms_user_timezone = '".$this->time->date("P")."';", 'head_top');
-			$this->tpl->add_js("var mmocms_user_dateformat_long = '".$this->time->translateformat2momentjs((isset($this->user->style['date_notime_long'])) ? $this->user->style['date_notime_long'] : ($this->config->get('default_date_long')) ? $this->config->get('default_date_long') : $this->user->lang('style_date_long'))."';", 'head_top');
-			$this->tpl->add_js("var mmocms_user_dateformat_short = '".$this->time->translateformat2momentjs((isset($this->user->style['date_notime_short'])) ? $this->user->style['date_notime_short'] : ($this->config->get('default_date_short')) ? $this->config->get('default_date_short') : $this->user->lang('style_date_short'))."';", 'head_top');
-			$this->tpl->add_js("var mmocms_user_timeformat = '".$this->time->translateformat2momentjs((isset($this->user->style['time'])) ? $this->user->style['time'] : ($this->config->get('default_date_time')) ? $this->config->get('default_date_time') : $this->user->lang('style_time'))."';", 'head_top');
+			$this->tpl->add_js("var mmocms_user_dateformat_long = '".$this->time->translateformat2momentjs((isset($this->user->style['date_notime_long'])) ? $this->user->style['date_notime_long'] : (($this->config->get('default_date_long')) ? $this->config->get('default_date_long') : $this->user->lang('style_date_long')))."';", 'head_top');
+			$this->tpl->add_js("var mmocms_user_dateformat_short = '".$this->time->translateformat2momentjs((isset($this->user->style['date_notime_short'])) ? $this->user->style['date_notime_short'] : (($this->config->get('default_date_short')) ? $this->config->get('default_date_short') : $this->user->lang('style_date_short')))."';", 'head_top');
+			$this->tpl->add_js("var mmocms_user_timeformat = '".$this->time->translateformat2momentjs((isset($this->user->style['time'])) ? $this->user->style['time'] : (($this->config->get('default_date_time')) ? $this->config->get('default_date_time') : $this->user->lang('style_time')))."';", 'head_top');
 			$this->tpl->add_js("var mmocms_user_timestamp = '".$this->time->date("m/d/Y H:i:s")."';", 'head_top');
 			$this->tpl->add_js("var mmocms_user_timestamp_atom = '".$this->time->date(DATE_ATOM)."';", 'head_top');
 
@@ -679,6 +679,7 @@ if (!class_exists("jquery")) {
 				if(isset($options['slideshowSpeed'])){	$jsoptions[]	= "slideshowSpeed:".$options['slideshowSpeed'];}
 				if(isset($options['type'])){	$jsoptions[]	= $options['type'].": true";}
 				if(isset($options['title_function'])){	$jsoptions[]	= "title: function(){".$options['title_function']."}";}
+				if(isset($options['oncomplete'])){	$jsoptions[]	= "onComplete: function(){".$options['oncomplete']."}";}
 			}
 			$jsoptions[] = 'rel:"'.$id.'"';
 			$jsoptions[] = 'maxWidth:"90%"';

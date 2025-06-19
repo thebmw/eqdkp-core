@@ -45,13 +45,14 @@ class calendar_pageobject extends pageobject {
 	public function mass_signin(){
 		$eventids = $this->in->getArray('selected_ids', 'int');
 		if(is_array($eventids)){
-			$usergroups		= $this->config->get('calendar_raid_confirm_raidgroupchars');
-			$signupstatus	= $this->in->get('member_signupstatus', 0);
-			if(is_array($usergroups) && count($usergroups) > 0 && $signupstatus == 1){
-				if($this->user->check_group($usergroups, false)){
-					$signupstatus = 0;
-				}
-			}
+		    $signupstatus	= $this->in->get('member_signupstatus', 0);
+		    $arrConfirmRaidgroups	= $this->config->get('calendar_raid_confirm_raidgroupchars');
+		    if(is_array($arrConfirmRaidgroups) && count($arrConfirmRaidgroups) > 0 && $signupstatus == 1){
+		        if($this->pdh->get('raid_groups_members', 'check_user_is_in_groups', array($this->user->id, $arrConfirmRaidgroups))){
+		            $signupstatus = 0;
+		        }
+		    }
+		   
 			$myrole = ($this->in->get('member_role', 0) > 0) ? $this->in->get('member_role', 0) : $this->pdh->get('member', 'defaultrole', array($this->in->get('member_id', 0)));
 
 			foreach($eventids as $eventid){
@@ -135,7 +136,7 @@ class calendar_pageobject extends pageobject {
 
 	// Operator/Admin: Delete an event in the calendar
 	public function delete_event(){
-		if($this->user->check_auth('a_cal_revent_conf', false) || $this->check_permission($this->in->get('eventid', 0))){
+		if($this->user->check_auth('a_cal_revent_conf', false) || $this->check_permission($this->in->get('deleteid', 0))){
 			$clones_selection	= $this->in->get('cc_selection', 'this');
 			$status				= $this->pdh->put('calendar_events', 'delete_cevent', array($this->in->get('deleteid', 0), $clones_selection));
 			$this->pdh->process_hook_queue();
@@ -454,7 +455,7 @@ class calendar_pageobject extends pageobject {
 			'RAID_LIST'				=> $hptt->get_html_table($this->in->get('sort'), '', 0, 100),
 			'DD_CHARS'				=> $memberrole[0],
 			'DD_ROLES'				=> $memberrole[1],
-			'NO_CHAR_ASSIGNED'		=> (count($drpdwn_members) > 0) ? false : true,
+		    'NO_CHAR_ASSIGNED'		=> (is_array($drpdwn_members) && count($drpdwn_members) > 0) ? false : true,
 			'DD_STATUS'				=> (new hdropdown('member_signupstatus', array('options' => $raidstatus)))->output(),
 			'DD_MULTIDEL'			=> (new hdropdown('deleteall_selection', array('options' => $deleteall_drpdown)))->output(),
 			'TXT_NOTE'				=> (new htext('member_note', array('size' => '20')))->output(),

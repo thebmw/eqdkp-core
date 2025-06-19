@@ -196,7 +196,8 @@ class install extends gen_class {
 		}
 		$this->init_language();
 		$this->scan_steps();
-		if(!(in_array($this->current_step, array_keys($this->steps)) || $this->current_step == 'start') && $this->current_step != 'end') $this->pdl->log('install_error', 'invalid current step');
+		
+		if(!(in_array($this->current_step, $this->steps) || $this->current_step == 'start') && $this->current_step != 'end') $this->pdl->log('install_error', 'invalid current step');
 		if($this->in->exists('select')) {
 			$this->current_step = $this->in->get('select');
 		} elseif($this->in->exists('next') || $this->in->exists('prev') || $this->current_step == 'start' || $this->in->exists('skip')) {
@@ -350,7 +351,7 @@ class install extends gen_class {
 	}
 
 	private function parse_end() {
-		header('Location: '.$this->root_path.'admin/quickstart.php?splash=true');
+		header('Location: '.$this->root_path.'admin/index.php');
 		exit;
 	}
 

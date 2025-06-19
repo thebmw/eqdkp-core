@@ -374,7 +374,7 @@ if(!class_exists('infotooltip')) {
 				$cache_name = md5($cache_name).'.itt';
 
 				if(in_array($cache_name, $this->cached)) {
-					$item = unserialize_noclasses(file_get_contents($this->pfh->FilePath($cache_name, 'itt_cache')));
+					$item = unserialize(file_get_contents($this->pfh->FilePath($cache_name, 'itt_cache')), array('allowed_classes' => false));
 					if(isset($item['baditem'])){
 						$this->pdl->log('infotooltip', 'Item found, but item is baditem. forceupdate set to true.');
 						$forceupdate = true;
@@ -430,7 +430,7 @@ if(!class_exists('infotooltip')) {
 			$cache_name = md5($cache_name).'.itt';
 
 			if(in_array($cache_name, $this->cached)) {
-				$item = unserialize_noclasses(file_get_contents($this->pfh->FilePath($cache_name, 'itt_cache')));
+				$item = unserialize(file_get_contents($this->pfh->FilePath($cache_name, 'itt_cache')), array('allowed_classes' => false));
 				if($item && !isset($item['baditem'])){
 
 					//We found it in Cache
@@ -441,9 +441,9 @@ if(!class_exists('infotooltip')) {
 					if(isset($item['icon']) && !$noicon) {
 						$strDefaultIcon = $this->buildlink().'/images/global/default-item.png';
 						if($onlyicon > 0) {
-							$visible = '<img src="'.((stripos($item['icon'], 'http') === 0) ? $item['icon'] : $iconpath.$item['icon'].$iconext).'" width="'.$onlyicon.'" height="'.$onlyicon.'" style="margin-top: 1px;" alt="icon" class="itt-icon" onerror="this.onerror=null;this.src=\''.$strDefaultIcon.'\';"/>';
+							$visible = '<img src="'.((stripos($item['icon'], 'http') === 0) ? $item['icon'] : $iconpath.$item['icon'].$iconext).'" width="'.$onlyicon.'" height="'.$onlyicon.'" style="margin-top: 1px;" alt="icon" class="itt-icon" onerror="this.onerror=null;this.src=\''.$strDefaultIcon.'\';" loading="lazy"/>';
 						} else {
-							$visible = '<img src="'.((stripos($item['icon'], 'http') === 0) ? $item['icon'] : $iconpath.$item['icon'].$iconext).'" width="16" height="16" style="margin-top: 1px;" alt="icon" class="itt-icon" onerror="this.onerror=null;this.src=\''.$strDefaultIcon.'\';"/> '.$display_name;
+							$visible = '<img src="'.((stripos($item['icon'], 'http') === 0) ? $item['icon'] : $iconpath.$item['icon'].$iconext).'" width="16" height="16" style="margin-top: 1px;" alt="icon" class="itt-icon" onerror="this.onerror=null;this.src=\''.$strDefaultIcon.'\';" loading="lazy"/> '.$display_name;
 						}
 					} else {
 						$visible = $display_name;
@@ -549,7 +549,7 @@ if(!class_exists('infotooltip')) {
 			$script_name = ( $script_name != '' ) ? $script_name . '/' : '';
 			return ($blnWithServerpath) ? $this->httpHost().'/'.$script_name : $this->httpHost();
 		}
-	}#class
+	}
 }
 
 /**
@@ -559,7 +559,7 @@ if(!class_exists('infotooltip')) {
  */
 if(!function_exists('itt_replace_bbcode')) {
 	function itt_replace_bbcode($text, $lang='') {
-		#[item game_id=0 lang=0 direct=0 onlyicon=0]name[/item]
+		//[item game_id=0 lang=0 direct=0 onlyicon=0]name[/item]
 		preg_match_all('+\[item(.*?)\](.*?)\[\/item\]+', $text, $matches);
 		foreach($matches[1] as $k => $match) {
 			$data = array(

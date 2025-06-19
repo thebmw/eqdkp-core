@@ -47,7 +47,7 @@ if(!class_exists('pdh_w_multidkp')) {
 					$retu[] = ($this->db->prepare("INSERT INTO __multidkp2event :p")->set($arrSet)->execute()) ? true : false;
 				}
 
-				if(!$this->config->get('dkp_easymode')){
+				if(!$this->config->get('dkp_easymode') || count($itempools) > 0){
 					foreach($itempools as $itempool_id) {
 						$retu[] = ($this->db->prepare("INSERT INTO __multidkp2itempool :p")->set(array(
 								'multidkp2itempool_multi_id' => $id,
@@ -231,6 +231,7 @@ if(!class_exists('pdh_w_multidkp')) {
 
 			if($this->config->get('dkp_easymode')){
 				$this->db->query("TRUNCATE TABLE __itempool;");
+				$this->db->query("INSERT INTO __itempool (`itempool_name`, `itempool_desc`) VALUES ('default', 'Default itempool');");
 				$this->db->query("TRUNCATE TABLE __multidkp2itempool;");
 				$this->pdh->enqueue_hook('itempool_update');
 			}
